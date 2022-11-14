@@ -19,23 +19,25 @@ namespace JobTest.Models.SeedData
                 if (context.Order.Any())
                 {
                     return;   
-                }
+                }                
 
                 context.Order.AddRange(
                     new Order
                     {
                         Number = "zak-123",
                         Date = DateTime.Parse("2022-11-14"),
-                        ProviderId = 1
+                        ProviderId = 3
                     },
 
                     new Order
                     {
                         Number = "zak-999",
                         Date = DateTime.Parse("2022-11-15"),
-                        ProviderId = 2
+                        ProviderId = 5
                     }
                 );
+
+               
                 context.SaveChanges();
             }
         }

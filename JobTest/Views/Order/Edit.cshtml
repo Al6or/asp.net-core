@@ -1,12 +1,13 @@
 ﻿@model JobTest.Models.Order
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Редактировать";
 }
 
-<h1>Edit</h1>
+<h1>Редактировать заказ</h1>
 
-<h4>Order</h4>
+<h5><a asp-action="Index">Вернуться назад</a></h5>
+<h3>Заказ</h3>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,18 +26,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="ProviderId" class="control-label"></label>
-                <input asp-for="ProviderId" class="form-control" />
-                <span asp-validation-for="ProviderId" class="text-danger"></span>
+                <select asp-for="ProviderId" class="form-control" asp-items="ViewBag.ProviderId">
+                    <option value="">Выбрать поставщика</option>
+                </select>
+                <span asp-validation-for="ProviderId" class="text-danger" />
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

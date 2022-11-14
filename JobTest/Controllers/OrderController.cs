@@ -20,9 +20,16 @@ namespace JobTest.Controllers
         }
 
         // GET: Order
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? Provider)
         {
-            return View(await _context.Order.ToListAsync());
+            ProvidersDropDownList();
+            IQueryable<Order> orders = _context.Order.Include(k => k.Provider);
+
+            if (Provider != null && Provider != 0)
+            {
+                orders = orders.Where(k => k.ProviderId == Provider);
+            }
+            return View(await orders.ToListAsync());
         }
 
         // GET: Order/Details/5
@@ -34,6 +41,7 @@ namespace JobTest.Controllers
             }
 
             var order = await _context.Order
+                .Include(c => c.Provider)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
@@ -46,12 +54,10 @@ namespace JobTest.Controllers
         // GET: Order/Create
         public IActionResult Create()
         {
+            ProvidersDropDownList();
             return View();
         }
-
-        // POST: Order/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Number,Date,ProviderId")] Order order)
@@ -62,6 +68,7 @@ namespace JobTest.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ProvidersDropDownList(order.ProviderId);
             return View(order);
         }
 
@@ -78,12 +85,11 @@ namespace JobTest.Controllers
             {
                 return NotFound();
             }
+
+            ProvidersDropDownList();
             return View(order);
         }
-
-        // POST: Order/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Number,Date,ProviderId")] Order order)
@@ -113,7 +119,16 @@ namespace JobTest.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ProvidersDropDownList(order.ProviderId);
             return View(order);
+        }
+
+        private void ProvidersDropDownList(object selectedProvider = null)
+        {
+            var ProvidersQuery = from k in _context.Provider
+                                 orderby k.Id
+                                 select k;
+            ViewBag.ProviderId = new SelectList(ProvidersQuery.AsNoTracking(), "Id", "Name", selectedProvider);
         }
 
         // GET: Order/Delete/5
@@ -125,6 +140,7 @@ namespace JobTest.Controllers
             }
 
             var order = await _context.Order
+                 .Include(c => c.Provider)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
