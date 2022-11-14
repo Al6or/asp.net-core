@@ -148,3 +148,5 @@ H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcore
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\bin\Debug\netcoreapp3.1\JobTest.Views.dll
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\bin\Debug\netcoreapp3.1\JobTest.Views.pdb
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\JobTest.Views.pdb
+H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs

@@ -1,43 +1,42 @@
 ﻿@model JobTest.Models.Order
 
 @{
-    ViewData["Title"] = "Просмотр заказа";
+    ViewData["Title"] = "Информация о заказе";
 }
 
-<h1>информация о заказе</h1>
 
 <div>
     <h5><a asp-action="Index">Вернуться назад</a></h5>
-    <h3>Заказ №<span>@Html.DisplayFor(model => model.Number)</span></h3>
+    <h3>Заказ <span class="badge badge-secondary">@Html.DisplayFor(model => model.Number)</span></h3>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Number)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Number)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Date)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Date)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Provider.Id)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Provider.Id)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Provider.Name)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Provider.Name)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактирование</a> |
-    <a asp-action="Delete" asp-route-id="@Model.Id">Удалить заказ</a>    
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Редактирование</a> 
+    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.Id">Удалить заказ</a>    
 </div>
