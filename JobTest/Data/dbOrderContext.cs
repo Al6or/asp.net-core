@@ -15,5 +15,6 @@ namespace JobTest.Data
         }
         public DbSet<Order> Order { get; set; }
         public DbSet<Provider> Provider { get; set; }
+        public DbSet<OrderItem> OrderItem { get; set; }
     }
 }

@@ -16,11 +16,6 @@ namespace JobTest.Models
         [Display(Name = "Номер поставщика")]
         public int Id { get; set; }
         [Display(Name = "Поставщик")]
-        public string Name { get; set; }
-        public List<Order> Orders { get; set; }
-        public Provider()
-        {
-            Orders = new List<Order>();
-        }
+        public string Name { get; set; }       
     }
 }

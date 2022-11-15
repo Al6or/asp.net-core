@@ -10,7 +10,7 @@
             <select name="Provider" class="form-control" asp-items="ViewBag.ProviderId">
                 <option value="0">Все поставщики</option>
             </select>
-            <input type="submit" value="Фильтр" class="btn btn-default" />
+            <input type="submit" value="Фильтр" class="btn btn-primary" />
     </div>
 </form>
 
@@ -33,7 +33,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr style="cursor:pointer;" onclick="window.location.href='/Order/Details/@item.Id'; return false">
+        <tr style="cursor:pointer;" onclick="window.location.href='/OrderItem/Index/@item.Id'; return false">
             <td>
                 @Html.DisplayFor(modelItem => item.Number)
             </td>

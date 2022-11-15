@@ -1,0 +1,90 @@
+﻿@model JobTest.Models.Order
+
+@{
+    ViewData["Title"] = "Информация о заказе";
+}
+<h1>Информация о заказе</h1>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Order" asp-action="Index">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Информация о заказе</li>
+    </ol>
+</nav>
+
+<div>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Number)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Number)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Provider.Id)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Provider.Id)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Provider.Name)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Provider.Name)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary btn-sm" asp-controller="Order" asp-action="Edit" asp-route-id="@Model.Id">Редактирование</a>
+    <a class="btn btn-danger btn-sm" asp-controller="Order" asp-action="Delete" asp-route-id="@Model.Id">Удалить заказ</a>
+</div>
+
+<hr />
+<h4>Список элементов в заказе</h4>
+<p>
+    <a class="btn btn-secondary btn-sm" asp-action="Create" asp-route-OrderItemId="@Model.Id">Добавить элемент</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Наименование")
+            </th>
+            <th>
+                @Html.DisplayName("Количество")
+            </th>
+            <th>
+                @Html.DisplayName("Ед. изм")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+                <td>
+                    <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id" asp-route-OrderItemId="@item.OrderId">Редактировать</a> 
+                    <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

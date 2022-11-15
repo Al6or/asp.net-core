@@ -139,7 +139,6 @@ H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcore
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\JobTest.RazorCoreGenerate.cache
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\Order\Create.cshtml.g.cs
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\Order\Delete.cshtml.g.cs
-H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\Order\Details.cshtml.g.cs
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\Order\Edit.cshtml.g.cs
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\Order\Index.cshtml.g.cs
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -150,3 +149,8 @@ H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\bin\Debug\netcore
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\JobTest.Views.pdb
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\Provider\Index.cshtml.g.cs
+H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\OrderItem\Create.cshtml.g.cs
+H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\OrderItem\Delete.cshtml.g.cs
+H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\OrderItem\Edit.cshtml.g.cs
+H:\Others\work\АСУМенеджмент\asp.net-core\JobTest\obj\Debug\netcoreapp3.1\Razor\Views\OrderItem\Index.cshtml.g.cs

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using JobTest.Data;
+using JobTest.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using JobTest.Data;
-using JobTest.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace JobTest.Controllers
 {
@@ -18,8 +16,6 @@ namespace JobTest.Controllers
         {
             _context = context;
         }
-
-        // GET: Order
         public async Task<IActionResult> Index(int? Provider)
         {
             ProvidersDropDownList();
@@ -31,27 +27,6 @@ namespace JobTest.Controllers
             }
             return View(await orders.ToListAsync());
         }
-
-        // GET: Order/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var order = await _context.Order
-                .Include(c => c.Provider)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-
-            return View(order);
-        }
-
-        // GET: Order/Create
         public IActionResult Create()
         {
             ProvidersDropDownList();
@@ -72,7 +47,6 @@ namespace JobTest.Controllers
             return View(order);
         }
 
-        // GET: Order/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,7 +91,7 @@ namespace JobTest.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "OrderItem", new { id = order.Id });
             }
             ProvidersDropDownList(order.ProviderId);
             return View(order);
@@ -130,8 +104,6 @@ namespace JobTest.Controllers
                                  select k;
             ViewBag.ProviderId = new SelectList(ProvidersQuery.AsNoTracking(), "Id", "Name", selectedProvider);
         }
-
-        // GET: Order/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,8 +121,6 @@ namespace JobTest.Controllers
 
             return View(order);
         }
-
-        // POST: Order/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -158,6 +128,7 @@ namespace JobTest.Controllers
             var order = await _context.Order.FindAsync(id);
             _context.Order.Remove(order);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

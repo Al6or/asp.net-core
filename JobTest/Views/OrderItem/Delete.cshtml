@@ -1,0 +1,51 @@
+﻿@model JobTest.Models.OrderItem
+
+@{
+    ViewData["Title"] = "Удалить";
+}
+
+<h1>Удалить элемент заказа</h1>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Order" asp-action="Index">Главная</a></li>
+        <li class="breadcrumb-item"><a asp-controller="OrderItem" asp-action="Index" asp-route-id="@Model.OrderId">Информация о заказе</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Удалить элемент заказа</li>
+    </ol>
+</nav>
+
+<h3>Вы точно хотите удалить элемент заказа?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Order.Number)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.Number)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Unit)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Unit)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" asp-route-OrderItemId="@Model.OrderId" value="Подтвердить" class="btn btn-danger" /> 
+    </form>
+</div>

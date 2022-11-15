@@ -4,10 +4,18 @@
     ViewData["Title"] = "Удалить заказ?";
 }
 
-<h2>Вы точно хотите удалить?*</h2>
+<h1>Удалить заказ</h1>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Order" asp-action="Index">Главная</a></li>
+        <li class="breadcrumb-item"><a asp-controller="OrderItem" asp-action="Index" asp-route-id="@Model.Id">Информация о заказе</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Удалить заказ</li>
+    </ol>
+</nav>
+
+<h3>Вы точно хотите удалить заказ?</h3>
 <div>
-    <h5><a asp-action="Details"  asp-route-id="@Model.Id">Вернуться назад</a></h5>
-    <h3>Заказ <span class="badge badge-secondary">@Html.DisplayFor(model => model.Number)</span></h3>
     <hr />
     <dl class="row">
         <dt class="col-sm-4">
@@ -38,6 +46,6 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Подтвердить" class="btn btn-danger" /> 
+        <input type="submit" value="Подтвердить" class="btn btn-danger" />
     </form>
 </div>

@@ -6,7 +6,13 @@
 
 <h1>Редактировать заказ</h1>
 
-<h5><a asp-action="Index">Вернуться назад</a></h5>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Order" asp-action="Index">Главная</a></li>
+        <li class="breadcrumb-item"><a asp-controller="OrderItem" asp-action="Index" asp-route-id="@Model.Id">Информация о заказе</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Редактировать заказ</li>
+    </ol>
+</nav>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -31,7 +37,7 @@
                 <span asp-validation-for="ProviderId" class="text-danger" />
             </div>
             <div class="form-group">
-                <input type="submit" value="Сохранить" class="btn btn-primary" />
+                <input type="submit" asp-route-OrderItemId="@Model.Id" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
     </div>

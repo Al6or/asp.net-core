@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobTest.Migrations
 {
     [DbContext(typeof(dbOrderContext))]
-    [Migration("20221114103732_InitialCreate")]
+    [Migration("20221114151131_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,35 @@ namespace JobTest.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProviderId");
+
                     b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("JobTest.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(18, 3)");
+
+                    b.Property<string>("Unit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItem");
                 });
 
             modelBuilder.Entity("JobTest.Models.Provider", b =>
@@ -55,6 +83,24 @@ namespace JobTest.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Provider");
+                });
+
+            modelBuilder.Entity("JobTest.Models.Order", b =>
+                {
+                    b.HasOne("JobTest.Models.Provider", "Provider")
+                        .WithMany("Orders")
+                        .HasForeignKey("ProviderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("JobTest.Models.OrderItem", b =>
+                {
+                    b.HasOne("JobTest.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

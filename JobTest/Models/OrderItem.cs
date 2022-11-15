@@ -19,14 +19,15 @@ namespace JobTest.Models
        /// </summary>
         public int Id { get; set; }
       
-        [Display(Name = "Наименование элемента")]
+        [Display(Name = "Наименование")]
        
-        public DateTime Name { get; set; }
+        public string Name { get; set; }
+        [Required(ErrorMessage = "Данно поле должно быть с точкой.")]
         [Display(Name = "Количество")]
-        [Column(TypeName = "decimal(18, 3)")]
-        public DateTime Quantity { get; set; }
+        [Column(TypeName = "decimal(18,3)")]
+        public decimal Quantity { get; set; }
         [Display(Name = "Ед. изм")]
-        public int Unit { get; set; }
+        public string Unit { get; set; }
         [Display(Name = "Номер заказа")]
         public int OrderId { get; set; }
         public Order Order { get; set; }

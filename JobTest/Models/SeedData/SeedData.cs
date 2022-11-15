@@ -15,29 +15,21 @@ namespace JobTest.Models.SeedData
             using (var context = new dbOrderContext(
                 serviceProvider.GetRequiredService<
                     DbContextOptions<dbOrderContext>>()))
-            {             
-                if (context.Order.Any())
+            {
+                if (context.Provider.Any())
                 {
-                    return;   
-                }                
+                    return;
+                }
 
-                context.Order.AddRange(
-                    new Order
-                    {
-                        Number = "zak-123",
-                        Date = DateTime.Parse("2022-11-14"),
-                        ProviderId = 3
-                    },
-
-                    new Order
-                    {
-                        Number = "zak-999",
-                        Date = DateTime.Parse("2022-11-15"),
-                        ProviderId = 5
-                    }
+                context.Provider.AddRange(
+                    new Provider { Name = "Поставщик 1" },
+                    new Provider { Name = "Поставщик Ранетки" },
+                    new Provider { Name = "Поставщик Глюкоза" },
+                    new Provider { Name = "Поставщик Яблоки" },
+                    new Provider { Name = "Поставщик Груши" }
                 );
 
-               
+
                 context.SaveChanges();
             }
         }
