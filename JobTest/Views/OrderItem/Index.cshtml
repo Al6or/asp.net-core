@@ -43,15 +43,36 @@
 </div>
 
 <div>
+    <a class="btn btn-success btn-sm" asp-action="Create" asp-route-OrderItemId="@Model.Id">Добавить элемент</a>
     <a class="btn btn-primary btn-sm" asp-controller="Order" asp-action="Edit" asp-route-id="@Model.Id">Редактирование</a>
     <a class="btn btn-danger btn-sm" asp-controller="Order" asp-action="Delete" asp-route-id="@Model.Id">Удалить заказ</a>
 </div>
 
 <hr />
 <h4>Список элементов в заказе</h4>
-<p>
-    <a class="btn btn-secondary btn-sm" asp-action="Create" asp-route-OrderItemId="@Model.Id">Добавить элемент</a>
-</p>
+
+<div class="row">
+    <form method="get" class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="name" class="sr-only">Наименование:</label>
+            <select id="name" name="Name" class="form-control" asp-items="ViewBag.Name">
+                <option value="">Выбрать наименование</option>
+            </select>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="unit" class="sr-only">Единица изм.:</label>
+            <select id="unit" name="Unit" class="form-control" asp-items="ViewBag.Unit">
+                <option value="">Выбрать единицу изм.</option>
+            </select>
+        </div>
+        <input type="submit" value="Фильтр" class="btn btn-primary mb-2" />
+    </form>
+
+    <form method="get" class="form-inline col align-self-end">
+        <input type="submit" value="Сбросить фильтр" class="btn btn-dark mb-2" />
+    </form>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -62,7 +83,7 @@
                 @Html.DisplayName("Количество")
             </th>
             <th>
-                @Html.DisplayName("Ед. изм")
+                Единица изм.
             </th>
             <th></th>
         </tr>

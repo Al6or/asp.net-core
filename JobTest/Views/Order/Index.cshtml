@@ -4,46 +4,71 @@
     ViewData["Title"] = "Главна страница";
 }
 
-<form method="get">
-    <div class="form-inline form-group">
-            <label class="control-label">Поставщик: </label>
-            <select name="Provider" class="form-control" asp-items="ViewBag.ProviderId">
-                <option value="0">Все поставщики</option>
-            </select>
-            <input type="submit" value="Фильтр" class="btn btn-primary" />
-    </div>
-</form>
+<h1>Список заказов</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-success">Добавить заказ</a>
+    <a asp-action="Create" class="btn btn-success btn-sm">Добавить заказ</a>
 </p>
-<table class="table table-hover">
-    <thead class="thead-light">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Number)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Provider.Name)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr style="cursor:pointer;" onclick="window.location.href='/OrderItem/Index/@item.Id'; return false">
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Provider.Name)
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<hr />
+
+<div class="row">
+    <form method="get" class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="number" class="sr-only">Номер заказа:</label>
+            <select id="number" name="number" class="form-control" asp-items="ViewBag.Number">
+                <option value="">Все номера</option>
+            </select>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="provider" class="sr-only">Поставщик:</label>
+            <select id="provider" name="Provider" class="form-control" asp-items="ViewBag.Name">
+                <option value="">Все поставщики</option>
+            </select>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="date-start" class="sr-only">Дата начало:</label>
+            <input type="date" class="form-control" name="dateStart" value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="date-end" class="sr-only">Дата конец:</label>
+            <input type="date" class="form-control" name="dateEnd" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        </div>
+        <input type="submit" value="Фильтр" class="btn btn-primary mb-2" />
+    </form>
+
+    <form method="get" class="form-inline col align-self-end">
+        <input type="submit" value="Сбросить фильтр" class="btn btn-dark mb-2" />
+    </form>
+</div>
+
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Provider.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr style="cursor:pointer;" onclick="window.location.href='/OrderItem/Index/@item.Id'; return false">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Provider.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,9 +21,9 @@ namespace JobTest.Models
         public int Id { get; set; }
       
         [Display(Name = "Наименование")]
-       
+        [Remote(action: "VerifyName", controller: "OrderItem")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Данно поле должно быть с точкой.")]
+        [Required(ErrorMessage = "Данное поле должно быть с точкой. Или не пустое.")]
         [Display(Name = "Количество")]
         [Column(TypeName = "decimal(18,3)")]
         public decimal Quantity { get; set; }

@@ -1,6 +1,7 @@
 ﻿using JobTest.Data;
 using JobTest.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,15 @@ namespace JobTest.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index(int? id, string? Name, string? Unit)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
+            fNamesDropDownList(id, Name);
+            fUnitsDropDownList(id,Unit);
             IQueryable<OrderItem> orderItems = _context.OrderItem
                 .Include(o => o.Order)
                 .Where(c => c.OrderId == id);
@@ -30,6 +33,16 @@ namespace JobTest.Controllers
             List<Order> listOrders = (_context.Order
                 .Include(p => p.Provider)
                 .Where(k => k.Id == id)).ToList();
+
+            if (!string.IsNullOrEmpty(Name))
+            {
+                orderItems = orderItems.Where(c => c.Name.Contains(Name));
+            }
+
+            if (!string.IsNullOrEmpty(Unit))
+            {
+                orderItems = orderItems.Where(c => c.Unit.Contains(Unit));
+            }
 
             Order orders = new Order
             {
@@ -51,7 +64,7 @@ namespace JobTest.Controllers
             ViewData["OrderId"] = OrderItemId;
             return View();
         }
-     
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Quantity,Unit,OrderId")] OrderItem orderItem, int? OrderItemId)
@@ -61,7 +74,7 @@ namespace JobTest.Controllers
                 orderItem.OrderId = (int)OrderItemId;
                 _context.Add(orderItem);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", new { id = OrderItemId });               
+                return RedirectToAction("Index", new { id = OrderItemId });
             }
             return View(orderItem);
         }
@@ -115,6 +128,22 @@ namespace JobTest.Controllers
             return View(orderItem);
         }
 
+        private void fNamesDropDownList(int? id,object selectedName = null)
+        {
+            var NamesQuery = (from k in _context.OrderItem
+                              where k.OrderId == (int)id
+                              select k.Name).Distinct();
+            ViewBag.Name = new SelectList(NamesQuery.AsNoTracking(), selectedName);
+        }
+
+        private void fUnitsDropDownList(int? id,object selectedUnit = null)
+        {
+            var UnitsQuery = (from k in _context.OrderItem
+                              where k.OrderId == (int)id
+                                select k.Unit).Distinct();
+            ViewBag.Unit = new SelectList(UnitsQuery.AsNoTracking(), selectedUnit);
+        }
+
         public async Task<IActionResult> Delete(int? id, int? OrderItemId)
         {
             ViewData["OrderId"] = OrderItemId;
@@ -147,6 +176,20 @@ namespace JobTest.Controllers
         private bool OrderItemExists(int id)
         {
             return _context.OrderItem.Any(e => e.Id == id);
+        }
+
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult VerifyName(string? Name)
+        {
+            IQueryable<Order> uniqueness = _context.Order
+                .Where(c => c.Number == Name);
+
+            if (uniqueness.Count() > 0)
+            {
+                return Json("Наименование \"Элемента\" заказа, не может быть равно \"Номеру\" заказа");
+            }
+
+            return Json(true);
         }
     }
 }

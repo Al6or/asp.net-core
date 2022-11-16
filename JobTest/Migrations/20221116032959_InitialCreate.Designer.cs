@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobTest.Migrations
 {
     [DbContext(typeof(dbOrderContext))]
-    [Migration("20221114151131_InitialCreate")]
+    [Migration("20221116032959_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,7 +58,7 @@ namespace JobTest.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(18, 3)");
+                        .HasColumnType("decimal(18,3)");
 
                     b.Property<string>("Unit")
                         .HasColumnType("nvarchar(max)");
@@ -88,7 +88,7 @@ namespace JobTest.Migrations
             modelBuilder.Entity("JobTest.Models.Order", b =>
                 {
                     b.HasOne("JobTest.Models.Provider", "Provider")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -97,7 +97,7 @@ namespace JobTest.Migrations
             modelBuilder.Entity("JobTest.Models.OrderItem", b =>
                 {
                     b.HasOne("JobTest.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

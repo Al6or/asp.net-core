@@ -48,7 +48,7 @@ namespace JobTest.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Quantity = table.Column<decimal>(type: "decimal(18, 3)", nullable: false),
+                    Quantity = table.Column<decimal>(type: "decimal(18,3)", nullable: false),
                     Unit = table.Column<string>(nullable: true),
                     OrderId = table.Column<int>(nullable: false)
                 },

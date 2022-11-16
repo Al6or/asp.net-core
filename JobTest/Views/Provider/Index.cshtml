@@ -5,6 +5,22 @@
 }
 <h2>Список поставщиков</h2>
 
+<div class="row">
+    <form method="get" class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="name" class="sr-only">Наименование:</label>
+            <select id="name" name="Name" class="form-control" asp-items="ViewBag.Name">
+                <option value="">Выбрать наименование</option>
+            </select>
+        </div>
+        <input type="submit" value="Фильтр" class="btn btn-primary mb-2" />
+    </form>
+
+    <form method="get" class="form-inline col align-self-end">
+        <input type="submit" value="Сбросить фильтр" class="btn btn-dark mb-2" />
+    </form>
+</div>
+
 <table class="table">
     <thead class="thead-light">
         <tr>

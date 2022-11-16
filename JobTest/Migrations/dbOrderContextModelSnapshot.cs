@@ -56,7 +56,7 @@ namespace JobTest.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(18, 3)");
+                        .HasColumnType("decimal(18,3)");
 
                     b.Property<string>("Unit")
                         .HasColumnType("nvarchar(max)");
@@ -86,7 +86,7 @@ namespace JobTest.Migrations
             modelBuilder.Entity("JobTest.Models.Order", b =>
                 {
                     b.HasOne("JobTest.Models.Provider", "Provider")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -95,7 +95,7 @@ namespace JobTest.Migrations
             modelBuilder.Entity("JobTest.Models.OrderItem", b =>
                 {
                     b.HasOne("JobTest.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
