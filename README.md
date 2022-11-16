@@ -13,26 +13,20 @@
     </tr> 
       <tr>
         <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.3.jpg"></td>
-    </tr> 
+    </tr>
+     <tr>
+        <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.10.jpg"></td>
+    </tr>
       <tr>
-        <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.4.1.jpg"></td>
-    </tr> 
-      <tr>
-        <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.4.jpg"></td>
+        <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.4.1.jpg" width="600"></td>
+        <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.4.jpg" width="600"></td>
     </tr> 
       <tr>
         <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.5.jpg"></td>
-    </tr> 
-      <tr>
-        <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.6.jpg"></td>
+          <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.6.jpg"></td>
     </tr> 
       <tr>
         <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.7.jpg"></td>
-    </tr> 
-      <tr>
         <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.8.jpg"></td>
-    </tr> 
-     <tr>
-        <td><img src="https://raw.githubusercontent.com/Al6or/asp.net-core/main/JobTest/bin/result/1.10.jpg"></td>
-    </tr> 
+    </tr>
  </table>
