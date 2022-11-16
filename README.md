@@ -6,6 +6,6 @@
 
 <table >
     <tr>
-        <td><img src="https://github.com/Al6or/asp.net-core/tree/main/JobTest/bin/result/1.1.png" width="600"></td>
+        <td><img src="https://github.com/Al6or/asp.net-core/blob/main/JobTest/bin/result/1.1.jpeg" width="600"></td>
     </tr>    
  </table>
